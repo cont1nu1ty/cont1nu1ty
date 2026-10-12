@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="220" viewBox="0 0 1000 220" role="img" aria-labelledby="title desc">
+<title id="title">continuity</title><desc id="desc">Agent runtimes, Linux systems and engineering notes. A schematic connects execution to persistent state and recovery.</desc>
+<rect width="1000" height="220" rx="8" fill="#EDF4F9"/>
+<rect x="0" y="0" width="8" height="220" rx="4" fill="#A56942"/>
+<g font-family="'DejaVu Sans',sans-serif">
+<text x="44" y="103" font-size="65" font-weight="650" fill="#173D60">continuity</text>
+<text x="47" y="147" font-size="22" fill="#3E6586">Agent runtimes &amp; Linux systems</text>
+<text x="47" y="179" font-size="17" fill="#3E6586">Projects, design decisions, engineering notes.</text>
+</g>
+<g fill="none" stroke="#B5CADB" stroke-width="2">
+<path d="M635 89H712M803 89H880M924 110V160H668V110"/>
+<path d="m705 84 7 5-7 5M873 84l7 5-7 5M673 119l-5-8-5 8"/>
+</g>
+<g font-family="'DejaVu Sans Mono',monospace" font-size="16" text-anchor="middle">
+<rect x="610" y="64" width="96" height="47" rx="7" fill="#FFFFFF" stroke="#B5CADB"/>
+<rect x="724" y="64" width="108" height="47" rx="7" fill="#FFFFFF" stroke="#B5CADB"/>
+<rect x="850" y="64" width="110" height="47" rx="7" fill="#FFFFFF" stroke="#B5CADB"/>
+<text x="658" y="94" fill="#173D60">run</text><text x="778" y="94" fill="#173D60">execute</text><text x="905" y="94" fill="#173D60">state</text>
+<rect x="743" y="144" width="110" height="30" rx="5" fill="#EDF4F9"/>
+<text x="798" y="165" fill="#A56942">recover</text>
+</g>
+</svg>

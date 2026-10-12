@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc">
+<title id="title">Agent Core architecture</title>
+<desc id="desc">Host-injected agent execution, governed tools, events and persistence.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#6F94B2"/></marker></defs>
+<rect width="1000" height="500" rx="10" fill="#F5F8FB"/>
+<g font-family="DejaVu Sans,Arial,sans-serif"><text x="30" y="38" font-size="23" font-weight="600" fill="#173D60">Agent Core</text>
+<path d="M260 122H383" fill="none" stroke="#6F94B2" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="322" y="108" text-anchor="middle" font-size="15" fill="#476781">inject</text>
+<path d="M615 122H738" fill="none" stroke="#6F94B2" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="677" y="108" text-anchor="middle" font-size="15" fill="#476781">resolve</text>
+<path d="M855 169V238" fill="none" stroke="#6F94B2" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="905" y="209" text-anchor="middle" font-size="15" fill="#476781">compile</text>
+<path d="M500 169V238" fill="none" stroke="#6F94B2" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="551" y="209" text-anchor="middle" font-size="15" fill="#476781">stream</text>
+<path d="M855 335V383" fill="none" stroke="#6F94B2" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<text x="924" y="366" text-anchor="middle" font-size="15" fill="#476781">call / observe</text>
+<path d="M739 287H686V425H617" fill="none" stroke="#6F94B2" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<text x="603" y="367" text-anchor="middle" font-size="15" fill="#476781">save / read</text>
+<rect x="30" y="75" width="230" height="94" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="145.0" y="117.0" text-anchor="middle" font-size="21" font-weight="600" fill="#173D60">Host Application</text>
+<text x="145.0" y="144.0" text-anchor="middle" font-size="16" fill="#476781">models / auth / state</text>
+<rect x="385" y="75" width="230" height="94" rx="8" fill="#FFFFFF" stroke="#976445" stroke-width="1.5"/>
+<text x="500.0" y="117.0" text-anchor="middle" font-size="21" font-weight="600" fill="#173D60">AgentService</text>
+<text x="500.0" y="144.0" text-anchor="middle" font-size="16" fill="#476781">stream / lifecycle</text>
+<rect x="740" y="75" width="230" height="94" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="855.0" y="117.0" text-anchor="middle" font-size="21" font-weight="600" fill="#173D60">WorkflowRegistry</text>
+<text x="855.0" y="144.0" text-anchor="middle" font-size="16" fill="#476781">explicit registration</text>
+<rect x="740" y="240" width="230" height="94" rx="8" fill="#FFFFFF" stroke="#976445" stroke-width="1.5"/>
+<text x="855.0" y="282.0" text-anchor="middle" font-size="21" font-weight="600" fill="#173D60">Planning</text>
+<text x="855.0" y="309.0" text-anchor="middle" font-size="16" fill="#476781">ReAct / Plan-and-Execute</text>
+<rect x="385" y="240" width="230" height="94" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="500.0" y="282.0" text-anchor="middle" font-size="21" font-weight="600" fill="#173D60">Events &amp; Results</text>
+<text x="500.0" y="309.0" text-anchor="middle" font-size="16" fill="#476781">RunEvent / RunResult</text>
+<rect x="385" y="385" width="230" height="80" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="500.0" y="420.0" text-anchor="middle" font-size="21" font-weight="600" fill="#173D60">Saver / Store</text>
+<text x="500.0" y="447.0" text-anchor="middle" font-size="16" fill="#476781">host-provided persistence</text>
+<rect x="740" y="385" width="230" height="80" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="855.0" y="420.0" text-anchor="middle" font-size="21" font-weight="600" fill="#173D60">Governed Tools</text>
+<text x="855.0" y="447.0" text-anchor="middle" font-size="16" fill="#476781">schema / auth / budget</text>
+<text x="152" y="286" text-anchor="middle" font-size="15" fill="#476781">Business dependencies</text>
+<text x="152" y="312" text-anchor="middle" font-size="15" fill="#476781">stay at the host boundary</text>
+</g></svg>

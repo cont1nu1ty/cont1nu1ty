@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1290" viewBox="0 0 1160 1290" role="img" aria-labelledby="title desc">
+<title id="title">mydocker 2.0: current M3 architecture and Docker/containerd responsibility map</title>
+<desc id="desc">CLI and evaluator use a versioned UDS API. Inside the mydockerd process, server and daemon services call Engine, which uses persistent FileStore and Linux providers. Providers control separate Sandbox keeper and Attempt init/PID 1 shim processes. Keeper preserves shared namespaces. Init manages Attempt resources and supervises workload processes. A separate dashed reference section compares responsibilities with dockerd, containerd, containerd-shim and runc; these are not project dependencies. Image/content/snapshot/bundle and full networking remain planned M4+ scope.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#6F94B2"/></marker><marker id="ref-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#665B91"/></marker></defs>
+<rect width="1160" height="1290" rx="12" fill="#F5F8FB"/>
+<g font-family="DejaVu Sans,Arial,sans-serif">
+<text x="32" y="44" font-size="29" fill="#173D60" text-anchor="start" font-weight="600">mydocker 2.0</text>
+<text x="32" y="76" font-size="18" fill="#476781" text-anchor="start">Current M3 · single-node Linux execution engine · prepared-rootfs</text>
+<text x="32" y="114" font-size="17" fill="#476781" text-anchor="start">Clients are separate processes</text>
+<text x="306" y="114" font-size="17" fill="#476781" text-anchor="start">Versioned HTTP/JSON over UDS</text>
+<rect x="276" y="140" width="852" height="336" rx="10" fill="#EAF1F7" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="298" y="170" font-size="20" fill="#173D60" text-anchor="start" font-weight="600">mydockerd process</text>
+<text x="1106" y="170" font-size="17" fill="#476781" text-anchor="end">Lifecycle and state authority</text>
+<path d="M232 213H261V229H303" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M232 309H261V262H303" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M544 243H579" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M850 243H891" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<path d="M715 292V349" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="733" y="324" font-size="16" fill="#476781" text-anchor="start">lifecycle actions</text>
+<text x="993" y="324" font-size="16" fill="#476781" text-anchor="middle">persist / replay</text>
+<path d="M650 442V496H487V535" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M976 442V496H923V535" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="698" y="518" font-size="17" fill="#476781" text-anchor="middle">launch · verify · control</text>
+<path d="M487 649V701" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="505" y="682" font-size="16" fill="#476781" text-anchor="start">hold namespaces</text>
+<path d="M923 649V701" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="941" y="682" font-size="16" fill="#476781" text-anchor="start">execution view</text>
+<path d="M748 615H700V897H747" fill="none" stroke="#6F94B2" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="684" y="794" font-size="16" fill="#476781" text-anchor="middle" transform="rotate(-90 684 794)">supervise · reap</text>
+<rect x="32" y="180" width="200" height="68" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="132.0" y="213" font-size="19" fill="#173D60" text-anchor="middle" font-weight="600">mydocker CLI</text>
+<text x="132.0" y="240" font-size="17" fill="#476781" text-anchor="middle">JSON commands</text>
+<rect x="32" y="275" width="200" height="96" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="132.0" y="308" font-size="19" fill="#173D60" text-anchor="middle" font-weight="600">mydocker-eval</text>
+<text x="132.0" y="335" font-size="17" fill="#476781" text-anchor="middle">pkg/client</text>
+<text x="132.0" y="358" font-size="17" fill="#476781" text-anchor="middle">raw evidence</text>
+<rect x="304" y="196" width="240" height="96" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="424.0" y="229" font-size="21" fill="#173D60" text-anchor="middle" font-weight="600">Local API</text>
+<text x="424.0" y="256" font-size="17" fill="#476781" text-anchor="middle">internal/server</text>
+<text x="424.0" y="279" font-size="17" fill="#476781" text-anchor="middle">+ internal/daemon</text>
+<rect x="580" y="196" width="270" height="96" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="715.0" y="229" font-size="21" fill="#173D60" text-anchor="middle" font-weight="600">Engine</text>
+<text x="715.0" y="256" font-size="17" fill="#476781" text-anchor="middle">FSM · rollback · recovery</text>
+<text x="715.0" y="279" font-size="17" fill="#476781" text-anchor="middle">internal/engine</text>
+<rect x="892" y="196" width="202" height="96" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="993.0" y="229" font-size="21" fill="#173D60" text-anchor="middle" font-weight="600">FileStore</text>
+<text x="993.0" y="256" font-size="17" fill="#476781" text-anchor="middle">intent · operations</text>
+<text x="993.0" y="279" font-size="17" fill="#476781" text-anchor="middle">events · outcomes</text>
+<rect x="582" y="350" width="512" height="92" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="838.0" y="383" font-size="21" fill="#173D60" text-anchor="middle" font-weight="600">Linux provider</text>
+<text x="838.0" y="410" font-size="17" fill="#476781" text-anchor="middle">provider · slim · isolation · cgroupv2</text>
+<text x="838.0" y="433" font-size="17" fill="#476781" text-anchor="middle">namespace / mount actions · cgroup ownership</text>
+<rect x="312" y="536" width="350" height="113" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="487.0" y="569" font-size="21" fill="#173D60" text-anchor="middle" font-weight="600">mydocker-shim</text>
+<text x="487.0" y="596" font-size="17" fill="#476781" text-anchor="middle">keeper · one per Sandbox</text>
+<text x="487.0" y="619" font-size="17" fill="#476781" text-anchor="middle">Separate process</text>
+<rect x="748" y="536" width="350" height="113" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="923.0" y="569" font-size="21" fill="#173D60" text-anchor="middle" font-weight="600">mydocker-shim</text>
+<text x="923.0" y="596" font-size="17" fill="#476781" text-anchor="middle">init / PID 1 · one per Attempt</text>
+<text x="923.0" y="619" font-size="17" fill="#476781" text-anchor="middle">Separate process</text>
+<rect x="312" y="702" width="350" height="130" rx="8" fill="#E5F0F6" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="487.0" y="735" font-size="19" fill="#173D60" text-anchor="middle" font-weight="600">Sandbox shared namespaces</text>
+<text x="487.0" y="762" font-size="17" fill="#476781" text-anchor="middle">UTS / IPC / network</text>
+<text x="487.0" y="785" font-size="17" fill="#476781" text-anchor="middle">hostname / DNS</text>
+<text x="487.0" y="808" font-size="17" fill="#476781" text-anchor="middle">Network: none / loopback</text>
+<rect x="748" y="702" width="350" height="130" rx="8" fill="#E5F0F6" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="923.0" y="735" font-size="21" fill="#173D60" text-anchor="middle" font-weight="600">Attempt resources</text>
+<text x="923.0" y="762" font-size="17" fill="#476781" text-anchor="middle">PID / mount namespaces</text>
+<text x="923.0" y="785" font-size="17" fill="#476781" text-anchor="middle">prepared-rootfs view · child cgroup</text>
+<text x="923.0" y="808" font-size="17" fill="#476781" text-anchor="middle">logs · exit / signal / OOM</text>
+<rect x="748" y="860" width="350" height="74" rx="8" fill="#FFFFFF" stroke="#6F94B2" stroke-width="1.5"/>
+<text x="923.0" y="893" font-size="20" fill="#173D60" text-anchor="middle" font-weight="600">Workload process tree</text>
+<text x="923.0" y="920" font-size="17" fill="#476781" text-anchor="middle">Trusted test workloads</text>
+<path d="M32 963H1128" stroke="#6F94B2" stroke-width="1" fill="none"/>
+<text x="32" y="999" font-size="23" fill="#173D60" text-anchor="start" font-weight="600">Docker / containerd responsibility map</text>
+<text x="32" y="1027" font-size="17" fill="#665B91" text-anchor="start">Dashed comparison only · not dependencies, process replicas or compatibility claims</text>
+<rect x="32" y="1053" width="356" height="150" rx="8" fill="#F0EEF7" stroke="#665B91" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="210" y="1084" font-size="20" fill="#665B91" text-anchor="middle" font-weight="600">dockerd + containerd</text>
+<path d="M210 1094V1113" fill="none" stroke="#665B91" stroke-width="2" stroke-linejoin="round" marker-end="url(#ref-arrow)" stroke-dasharray="6 5"/>
+<text x="210" y="1140" font-size="19" fill="#173D60" text-anchor="middle" font-weight="600">mydockerd</text>
+<text x="210" y="1165" font-size="16" fill="#476781" text-anchor="middle">Node API / policy + part of</text>
+<text x="210" y="1187" font-size="16" fill="#476781" text-anchor="middle">state, task and shim coordination</text>
+<rect x="402" y="1053" width="356" height="150" rx="8" fill="#F0EEF7" stroke="#665B91" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="580" y="1084" font-size="20" fill="#665B91" text-anchor="middle" font-weight="600">containerd-shim</text>
+<path d="M580 1094V1113" fill="none" stroke="#665B91" stroke-width="2" stroke-linejoin="round" marker-end="url(#ref-arrow)" stroke-dasharray="6 5"/>
+<text x="580" y="1140" font-size="19" fill="#173D60" text-anchor="middle" font-weight="600">mydocker-shim</text>
+<text x="580" y="1165" font-size="16" fill="#476781" text-anchor="middle">Keep execution alive across</text>
+<text x="580" y="1187" font-size="16" fill="#476781" text-anchor="middle">daemon restart; supervise tasks</text>
+<rect x="772" y="1053" width="356" height="150" rx="8" fill="#F0EEF7" stroke="#665B91" stroke-width="1.5" stroke-dasharray="7 5"/>
+<text x="950" y="1084" font-size="20" fill="#665B91" text-anchor="middle" font-weight="600">runc</text>
+<path d="M950 1094V1113" fill="none" stroke="#665B91" stroke-width="2" stroke-linejoin="round" marker-end="url(#ref-arrow)" stroke-dasharray="6 5"/>
+<text x="950" y="1140" font-size="19" fill="#173D60" text-anchor="middle" font-weight="600">Linux providers + shim</text>
+<text x="950" y="1165" font-size="16" fill="#476781" text-anchor="middle">Subset of process-creation duties</text>
+<text x="950" y="1187" font-size="16" fill="#476781" text-anchor="middle">No standalone runtime binary</text>
+<text x="32" y="1239" font-size="17" fill="#476781" text-anchor="start">M4+ planned: OCI image / content / snapshot / bundle / full network</text>
+<text x="32" y="1267" font-size="17" fill="#476781" text-anchor="start">M3 correctness evidence: disposable KVM validation.</text>
+</g></svg>

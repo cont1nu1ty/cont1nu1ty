@@ -95,14 +95,14 @@ CLI 和评测工具通过本地 API 访问 `mydockerd`。Engine 编排状态与 
 
 ## 工程笔记
 
-一些关于 Agent 与 Linux 容器运行时的设计思考。
+这里收录项目中的设计取舍和实测记录。
 
-| Agent Core | mydocker |
-| --- | --- |
-| [运行内核与宿主的职责边界](https://github.com/cont1nu1ty/agent_core/blob/main/docs/notes/host-boundaries.md) | [进程、包与领域对象的职责](https://github.com/cont1nu1ty/mydocker/blob/main/docs/architecture.md) |
-| [工具授权、预算与执行治理](https://github.com/cont1nu1ty/agent_core/blob/main/docs/notes/tool-governance.md) | [Sandbox 与 Attempt 生命周期](https://github.com/cont1nu1ty/mydocker/blob/main/docs/features/lifecycle-sandbox.md) |
-| [中断后如何恢复执行](https://github.com/cont1nu1ty/agent_core/blob/main/docs/notes/execution-recovery.md) | [Daemon 恢复、事件与本地 API](https://github.com/cont1nu1ty/mydocker/blob/main/docs/features/daemon-recovery-observability-api.md) |
-| [离线契约检查与 wheel 验证](https://github.com/cont1nu1ty/agent_core/blob/main/docs/testing.md) | [正确性与性能的证据链](https://github.com/cont1nu1ty/mydocker/blob/main/evaluation/README.md) |
+| Agent Core | mydocker | guofeng-platform |
+| --- | --- | --- |
+| [运行内核与宿主的职责边界](https://github.com/cont1nu1ty/agent_core/blob/main/docs/notes/host-boundaries.md) | [进程、包与领域对象的职责](https://github.com/cont1nu1ty/mydocker/blob/main/docs/architecture.md) | [接口压测与性能优化](https://github.com/cont1nu1ty/guofeng-platform/blob/main/docs/engineering/k6-content-reads.md) |
+| [工具授权、预算与执行治理](https://github.com/cont1nu1ty/agent_core/blob/main/docs/notes/tool-governance.md) | [Sandbox 与 Attempt 生命周期](https://github.com/cont1nu1ty/mydocker/blob/main/docs/features/lifecycle-sandbox.md) | |
+| [中断后如何恢复执行](https://github.com/cont1nu1ty/agent_core/blob/main/docs/notes/execution-recovery.md) | [Daemon 恢复、事件与本地 API](https://github.com/cont1nu1ty/mydocker/blob/main/docs/features/daemon-recovery-observability-api.md) | |
+| [离线契约检查与 wheel 验证](https://github.com/cont1nu1ty/agent_core/blob/main/docs/testing.md) | [正确性与性能的证据链](https://github.com/cont1nu1ty/mydocker/blob/main/evaluation/README.md) | |
 
 ## 其他工具与实验
 
